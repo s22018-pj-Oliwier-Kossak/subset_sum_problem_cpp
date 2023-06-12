@@ -11,10 +11,10 @@
 #include <string>
 #include <bitset>
 #include "subset.h"
-#include "hill_climbing_deter.h"
+#include "hill_climbing_random.h"
 
 
-void hill_climbing_deter(int iter, int random_number, std::vector<std::vector<int> >& vect_all_combinations, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find){
+void hill_climbing_random(int iter, int random_number, std::vector<std::vector<int> >& vect_all_combinations, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find){
     std::vector<int> best_subset;
     random_susbset(random_number,vect_all_combinations,best_subset,arr);
 
@@ -22,7 +22,7 @@ void hill_climbing_deter(int iter, int random_number, std::vector<std::vector<in
         std::cout<<std::endl;
         std::cout<<"iter: "<<i<<std::endl;
         create_neighbors_best_subset(best_subset, arr, vect_all_neighbors_of_subset);
-        goal_function(vect_all_neighbors_of_subset,best_subset, arr, sum_to_find);
+        goal_function_hill_random(vect_all_neighbors_of_subset,best_subset, arr, sum_to_find);
         vector2d_remove_all(vect_all_neighbors_of_subset);
         std::cout<<"{" ;
         for(int j=0; j<arr.size(); j++){
@@ -34,4 +34,5 @@ void hill_climbing_deter(int iter, int random_number, std::vector<std::vector<in
             std::cout<<"}" <<std::endl;
     }
 }
+
 
