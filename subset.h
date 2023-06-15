@@ -12,5 +12,6 @@ void random_susbset(int random_number, std::vector<std::vector<int> >& vect, std
 void goal_function( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find);
 void goal_function_hill_random( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find);
 void goal_function_simulated_annealing(int iter,std::function<double(int)> T, std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset,std::vector<int>& best_subset_global, std::vector<int>& arr, int sum_to_find);
+void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find, std::vector<std::vector<int> >& tabu_list, std::vector<int>& best_subset_global, bool& tabu_start);
 //void subsets_shuffle(std::vector<std::vector<int> > & vect);
 //void create_random_array(std::vector<int>& arr, int arr_size, int start_index, int end_index);
