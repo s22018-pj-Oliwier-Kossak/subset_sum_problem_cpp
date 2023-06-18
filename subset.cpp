@@ -205,13 +205,19 @@ void convert_binary_to_decimal(std::vector<std::vector<int> >& vect, std::vector
 
 }
 
-
+void display_subset(std::vector<int>& vect){
+    std::cout<<"{";
+    for(int i=0; i<vect.size(); i++){
+        std::cout<<vect[i]<<" ,";
+    }
+    std::cout<<"}"<<std::endl;
+}
 
 int create_random_number_arr(int size)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, pow(2, size));
+    std::uniform_int_distribution<> dis(0, pow(2, size)-1);
     int numb = dis(gen);
     return numb;
 }
@@ -415,15 +421,13 @@ void goal_function_simulated_annealing(int iter,std::function<double(int)> T, st
 
 }
 
-void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find, std::vector<std::vector<int> >& tabu_list, std::vector<int>& best_subset_global, bool& tabu_start){
+void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find, std::vector<std::vector<int> >& tabu_list, bool& tabu_start,int tabu_size){
 
 
         int current_neighbor_sum = 0;
         int current_neighbor_points = 0;
         int current_neighbor_sum_best = 0;
         int current_neighbor_points_best = 0;
-        int best_subset_sum_global = 0;
-        int best_subset_points_global = 0;
         int best_subset_sum = 0;
         int best_subset_points = 0;
         int iter_index_loop=0;
@@ -436,7 +440,7 @@ void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_s
             }
         }
         best_subset_points = abs(best_subset_sum-sum_to_find);
-        best_subset_points_global = best_subset_points;
+
 
         vect_all_neighbors_of_subset.erase(vect_all_neighbors_of_subset.begin());
         best_subset_neighbor.clear();
@@ -503,9 +507,16 @@ void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_s
                 std::cout<<"is_present: "<<is_present<<std::endl;
                 if(is_present_neighbor == 1){
                      if(vect_all_neighbors_of_subset.size()<=1){
-                            std::cout<<"BREAKKBREAK PRES" <<std::endl;
+                            std::cout<<"BREAKKBREAK PRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS" <<std::endl;
+                           /* std::vector<int> subset_to_back;
+                            for(int j=0; j<arr.size(); j++){
+                                subset_to_back.insert(subset_to_back.begin()+j,tabu_list[tabu_list.size()-2][j]);
+                            }
+                            vect_all_neighbors_of_subset.push_back(subset_to_back);
+                            best_subset_neighbor=subset_to_back;*/
                             tabu_start=false;
                             break;
+
                         }
                     vect_all_neighbors_of_subset.erase(vect_all_neighbors_of_subset.begin()+iter_index_loop);
                     std::cout<<"vect_all_neighbors_of_subset.size():"<<vect_all_neighbors_of_subset.size()<<std::endl;
@@ -538,13 +549,11 @@ void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_s
                         }
                     }
 
-
-
-
-
-
             }
-
+            if(tabu_list.size()==tabu_size){
+                tabu_start=false;
+                break;
+            }
 
             iter_index_loop++;
 
@@ -552,21 +561,6 @@ void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_s
         }
 
         best_subset=best_subset_neighbor;
-        std::cout<<"current_neighbor_points_best: "<<current_neighbor_points_best<<" best_subset_points_global"<<best_subset_points_global<<std::endl;
-        if(best_subset_points_global >= current_neighbor_points_best  ){
-
-                    best_subset_points_global  = current_neighbor_points;
-                    best_subset_global.clear();
-                    best_subset_global = best_subset;
-
-                    for(int j=0; j<arr.size(); j++){
-                            if(best_subset_global[j]==1){
-                                    std::cout<<arr[j] <<", ";
-                            }
-                    }
-
-             }
-
 
 
 

@@ -16,7 +16,7 @@
 #include "hill_climbing_random.h"
 #include "simulate_annealing.h"
 #include "tabu.h"
-
+#include "ga.h"
 
 void check(std::vector<int>& arr);
 
@@ -56,10 +56,11 @@ int main(int argc, char* argv[]){
     numbers.close();
     iter.close();
     iter_create_binary(arr, vect_vect_all_combinations);
-    random_number = create_random_number_arr(arr.size());
+    random_number = create_random_number_arr(1);
    // hill_climbing_deter(iterations,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,14);
     //simulated_annealing(iterations,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,11);
-    tabu(random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,8);
+    //tabu(random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,6,iterations);
+    ga(5,1,arr.size(),vect_vect_all_combinations,arr,4);
    /* if (argc == 1) {
         std::cout << "No extra Command Line Argument passed "
                 "other than program name"
@@ -87,7 +88,7 @@ int main(int argc, char* argv[]){
                 //hill_climbing_deter(iteration_console,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,14);
             break;
         }
-    }*/
+    }
 
 
     /*for(int i=0; i<arr.size();i++){

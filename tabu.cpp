@@ -12,9 +12,10 @@
 #include <limits>
 #include <bitset>
 #include "subset.h"
-#include "hill_climbing_deter.h"
 
 
+
+void check_best_global(std::vector<int>& best_subset, std::vector<int>& best_subset_global, std::vector<int>& arr,int sum_to_find);
 void tabu( int random_number, std::vector<std::vector<int> >& vect_all_combinations, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find, int tabu_size=std::numeric_limits<double>::infinity()){
     std::vector<int> best_subset;
     std::vector<int> best_subset_global;
@@ -25,14 +26,18 @@ void tabu( int random_number, std::vector<std::vector<int> >& vect_all_combinati
     int iteration=0;
     bool tabu_start = true;
     while(tabu_start){
-        std::cout<<"tab: ";
-         print_vector2d_values(tabu_list);
+
+
         std::cout<<std::endl;
         std::cout<<"iter: "<<iteration<<std::endl;
         create_neighbors_best_subset(best_subset, arr, vect_all_neighbors_of_subset);
-        goal_function_tabu(vect_all_neighbors_of_subset, best_subset, arr, sum_to_find, tabu_list, best_subset_global, tabu_start);
+        goal_function_tabu(vect_all_neighbors_of_subset, best_subset, arr, sum_to_find, tabu_list, tabu_start, tabu_size);
+        check_best_global(best_subset ,best_subset_global ,arr ,sum_to_find);
+        std::cout<<"tab: "<<std::endl;
+        print_vector2d_values(tabu_list);
         vector2d_remove_all(vect_all_neighbors_of_subset);
        std::cout<<"best actual {" ;
+
         for(int j=0; j<arr.size(); j++){
                 if(best_subset[j]==1){
 
@@ -53,5 +58,35 @@ void tabu( int random_number, std::vector<std::vector<int> >& vect_all_combinati
                 break;
             }
     }
+
+}
+
+void check_best_global(std::vector<int>& best_subset, std::vector<int>& best_subset_global, std::vector<int>& arr,int sum_to_find){
+    int points_global_subset_best = 0;
+    int sum_global_subset_best = 0;
+    int points_actual_subset = 0;
+    int sum_actual_subset = 0;
+    for(int j=0; j<arr.size(); j++){
+        if(best_subset_global[j]==1){
+                sum_global_subset_best+=arr[j];
+            }
+        }
+    for(int j=0; j<arr.size(); j++){
+        if(best_subset[j]==1){
+               sum_actual_subset  += arr[j];
+            }
+        }
+    points_global_subset_best = abs(sum_global_subset_best-sum_to_find);
+    points_actual_subset = abs(sum_actual_subset-sum_to_find);
+    if(points_global_subset_best >= points_actual_subset){
+        std::cout<<"points_global_subset_best : "<<points_global_subset_best<<" points_actual_subset:" <<points_actual_subset<<std::endl;
+        sum_global_subset_best=sum_actual_subset ;
+        best_subset_global = best_subset;
+        points_global_subset_best=0;
+    }
+    sum_global_subset_best=0;
+    points_global_subset_best=0;
+    points_actual_subset=0;
+    sum_actual_subset=0;
 
 }
