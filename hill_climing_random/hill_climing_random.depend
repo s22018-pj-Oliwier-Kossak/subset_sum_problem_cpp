@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1687111535 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_random\hill_climing_random\hill_climbing_random.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<bitset>
+	"subset.h"
+	"hill_climbing_random.h"
+
+1687111497 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_random\hill_climing_random\subset.h
+
+1687110533 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_random\hill_climing_random\hill_climbing_random.h
+
+1687111973 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_random\hill_climing_random\main.cpp
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<string>
+	<cmath>
+	<limits>
+	<chrono>
+	<numeric>
+	<functional>
+	"subset.h"
+	"hill_climbing_random.h"
+
+1687111516 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_random\hill_climing_random\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+	"subset.h"
+

@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1687200527 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\ga.cpp
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<string>
+	<cmath>
+	<limits>
+	<chrono>
+	<numeric>
+	<functional>
+	<iomanip>
+	"subset.h"
+	"ga.h"
+
+1687193878 c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\subset.h
+
+1687200527 c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\ga.h
+
+1687194850 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+	"subset.h"
+
+1687197059 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\main.cpp
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<string>
+	<cmath>
+	<limits>
+	<chrono>
+	<numeric>
+	<functional>
+	"subset.h"
+	"ga.h"
+
