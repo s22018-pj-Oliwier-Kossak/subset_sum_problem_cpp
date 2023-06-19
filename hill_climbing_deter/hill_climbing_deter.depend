@@ -1,0 +1,86 @@
+# depslib dependency file v1.0
+1687103605 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\hill_climbing_deter.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<bitset>
+	"subset.h"
+	"hill_climbing_deter.h"
+
+1687102792 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\subset.h
+
+1687102177 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\hill_climbing_deter.h
+
+1687102630 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+	"subset.h"
+
+1687110994 source:c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\main.cpp
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<string>
+	<cmath>
+	<limits>
+	<chrono>
+	<numeric>
+	<functional>
+	"subset.h"
+	"hill_climbing_deter.h"
+	"subset.cpp"
+	"hill_climbing_deter.cpp"
+
+1687102630 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+	"subset.h"
+
+1687103605 c:\users\pc\desktop\canon_game\metaheurystka\hill_climbing_deter\hill_climbing_deter\hill_climbing_deter.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<bitset>
+	"subset.h"
+	"hill_climbing_deter.h"
+

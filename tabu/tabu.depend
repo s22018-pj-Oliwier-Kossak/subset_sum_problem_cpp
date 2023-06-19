@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1687193145 source:c:\users\pc\desktop\canon_game\metaheurystka\tabu\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+	"subset.h"
+
+1687192920 c:\users\pc\desktop\canon_game\metaheurystka\tabu\subset.h
+
+1687193055 source:c:\users\pc\desktop\canon_game\metaheurystka\tabu\tabu.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<bitset>
+	"subset.h"
+
+1687181827 source:c:\users\pc\desktop\canon_game\metaheurystka\tabu\main.cpp
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<string>
+	<cmath>
+	<limits>
+	<chrono>
+	<numeric>
+	<functional>
+	"subset.h"
+	"tabu.h"
+
+1687192862 c:\users\pc\desktop\canon_game\metaheurystka\tabu\tabu.h
+
+1687181805 c:\users\pc\desktop\canon_game\metaheurystka\tabu\subset.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<functional>
+
+1687181799 c:\users\pc\desktop\canon_game\metaheurystka\tabu\tabu.cpp
+	<bits/stdc++.h>
+	<algorithm>
+	<random>
+	<iostream>
+	<stdio.h>
+	<limits.h>
+	<vector>
+	<cmath>
+	<chrono>
+	<numeric>
+	<string>
+	<limits>
+	<bitset>
+	"subset.h"
+
