@@ -16,7 +16,7 @@
 void ga(int iter, int method, int population_size, std::vector<std::vector<int> >& vect_vect_all_combinations,std::vector<int>& arr, int sum_to_find){
     std::vector<std::vector<int> > population;
     std::vector<int> points_after_scale;
-    create_population(population_size, vect_vect_all_combinations, population);
+    create_population(population_size, vect_vect_all_combinations, population, arr);
     bool start = true;
     int index = 0;
     while((index<iter)&&(start)){
@@ -24,22 +24,21 @@ void ga(int iter, int method, int population_size, std::vector<std::vector<int> 
         std::cout<<"iteration: "<<index+1<<std::endl;
         print_vector2d_values(population);
         ga_goal_function(population, population_size, arr, sum_to_find, points_after_scale, start);
-
-        roulette(population, population_size, points_after_scale) ;
-        choose_cross_method(method,population,population_size);
-        mutation(population, population_size);
+        roulette(population, population_size, points_after_scale, arr) ;
+        choose_cross_method(method,population,population_size, arr);
+        mutation(population, population_size, arr);
         index++;
     }
 
 
 }
 
-void create_population(int population_size, std::vector<std::vector<int> >& vect_vect_all_combinations, std::vector<std::vector<int> >& population ){
+void create_population(int population_size, std::vector<std::vector<int> >& vect_vect_all_combinations, std::vector<std::vector<int> >& population, std::vector<int>& arr){
     int number;
     std::vector<int> vect_to_push;
     for(int i=0; i<population_size; i++){
-        number=create_random_number_arr(population_size);
-        for(int j=0; j<population_size; j++){
+        number=create_random_number_arr(arr.size());
+        for(int j=0; j<arr.size(); j++){
             vect_to_push.push_back(vect_vect_all_combinations[number][j]);
         }
         std::cout<<number<<std::endl;
@@ -55,7 +54,7 @@ void ga_goal_function(std::vector<std::vector<int> >& population ,int population
     int sum_of_gene=0;
     int all_gene_sum=0;
     for(int i=0; i<population_size; i++){
-        for(int j=0; j<population_size; j++){
+        for(int j=0; j<arr.size(); j++){
             if(population[i][j]==1){
                 sum_of_gene+=arr[j];
 
@@ -89,7 +88,7 @@ void ga_goal_function(std::vector<std::vector<int> >& population ,int population
 
 }
 
-void roulette(std::vector<std::vector<int> >& population, int population_size ,std::vector<int>& points_after_scale){
+void roulette(std::vector<std::vector<int> >& population, int population_size ,std::vector<int>& points_after_scale, std::vector<int>& arr){
     std::vector<int> probability;
     std::vector<std::vector<int> > population_probability;
     int sum_points_after_scale = 0;
@@ -127,7 +126,7 @@ void roulette(std::vector<std::vector<int> >& population, int population_size ,s
     for(int i=0; i<population_size; i++){
         std::vector<int> vect_to_push;
         number=create_random_number(0,probability_sum-1);
-        for(int j=0; j<population_size; j++){
+        for(int j=0; j<arr.size(); j++){
             vect_to_push.push_back(population_probability[number][j]);
         }
         std::cout<<number<<std::endl;
@@ -140,8 +139,8 @@ void roulette(std::vector<std::vector<int> >& population, int population_size ,s
 
 }
 
-void cross_half(std::vector<std::vector<int> >& population, int population_size){
-    int cross_index = create_random_number(1,population_size-2);
+void cross_half(std::vector<std::vector<int> >& population, int population_size, std::vector<int>& arr){
+    int cross_index = create_random_number(1,arr.size()-2);
     std::vector<int> first_parent;
     std::vector<int> second_parent;
     std::vector<int> first_child;
@@ -151,17 +150,17 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
     if(population_size%2 == 0){
         for(int i=0; i<population_size; i+=2){
                 std::cout<<"cross_index: "<<cross_index<<std::endl;
-                for(int j=0; j<population_size; j++){
+                for(int j=0; j<arr.size(); j++){
                     first_parent.insert(first_parent.begin()+j, population[i][j]);
                     second_parent.insert(second_parent.begin()+j, population[i+1][j]);
                 }
                 std::cout<<"first_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<second_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -169,17 +168,17 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
                     first_child.push_back(first_parent[j]);
                      second_child.push_back(second_parent[j]);
                 }
-                for(int j=cross_index; j<population_size; j++){
+                for(int j=cross_index; j<arr.size(); j++){
                     first_child.push_back(second_parent[j]);
                      second_child.push_back(first_parent[j]);
                 }
                 std::cout<<"first_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<< second_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -199,17 +198,17 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
             for(int i=0; i<population_size-1; i+=2){
 
                 std::cout<<"cross_index: "<<cross_index<<std::endl;
-                for(int j=0; j<population_size; j++){
+                for(int j=0; j<arr.size(); j++){
                     first_parent.insert(first_parent.begin()+j, population[i][j]);
                     second_parent.insert(second_parent.begin()+j, population[i+1][j]);
                 }
                 std::cout<<"first_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<second_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -217,17 +216,17 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
                     first_child.push_back(first_parent[j]);
                      second_child.push_back(second_parent[j]);
                 }
-                for(int j=cross_index; j<population_size; j++){
+                for(int j=cross_index; j<arr.size(); j++){
                     first_child.push_back(second_parent[j]);
                      second_child.push_back(first_parent[j]);
                 }
                 std::cout<<"first_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<< second_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -239,7 +238,7 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
             second_parent.clear();
 
         }
-        for(int j=0; j<population_size; j++){
+        for(int j=0; j<arr.size(); j++){
             last_in_population.insert(last_in_population.begin()+j, population[population_size-1][j]);
         }
         new_population.push_back(last_in_population);
@@ -252,25 +251,25 @@ void cross_half(std::vector<std::vector<int> >& population, int population_size)
 
 }
 
-void choose_cross_method(int method, std::vector<std::vector<int> >& population, int population_size){
+void choose_cross_method(int method, std::vector<std::vector<int> >& population, int population_size, std::vector<int>& arr){
     if(method == 1){
-        cross_half(population,population_size);
+        cross_half(population,population_size, arr);
     }
     else{
-        cross_random(population,population_size);
+        cross_random(population,population_size, arr);
     }
 }
 
-void mutation(std::vector<std::vector<int> >& population, int population_size){
+void mutation(std::vector<std::vector<int> >& population, int population_size, std::vector<int>& arr){
     for(int i=0; i<population_size; i++){
       int chance_to_mutation = create_random_number(0,9);
       if(chance_to_mutation == 1){
             std::cout<<"index: "<<i<<" subset before mutation: {";
-            for(int j=0; j<population_size; j++){
+            for(int j=0; j<arr.size(); j++){
                 std::cout<< population[i][j]<<" ,";
             }
             std::cout<<"}  ";
-            for(int j=0; j<population_size; j++){
+            for(int j=0; j<arr.size(); j++){
                 int chance_to_mutation_index = create_random_number(0,3);
                 if(chance_to_mutation_index == 1){
 
@@ -285,7 +284,7 @@ void mutation(std::vector<std::vector<int> >& population, int population_size){
             }
 
             std::cout<<" subset after mutation: {";
-            for(int j=0; j<population_size; j++){
+            for(int j=0; j<arr.size(); j++){
                 std::cout<< population[i][j]<<" ,";
             }
             std::cout<<"}"<<std::endl;
@@ -297,9 +296,9 @@ void mutation(std::vector<std::vector<int> >& population, int population_size){
 
 }
 
-void cross_random(std::vector<std::vector<int> >& population, int population_size){
+void cross_random(std::vector<std::vector<int> >& population, int population_size, std::vector<int>& arr){
     int cross_index_smaller = create_random_number(1,2);
-    int cross_index_bigger = create_random_number(2,population_size-2);
+    int cross_index_bigger = create_random_number(2,arr.size()-2);
     std::vector<int> first_parent;
     std::vector<int> second_parent;
     std::vector<int> first_child;
@@ -310,17 +309,17 @@ void cross_random(std::vector<std::vector<int> >& population, int population_siz
         for(int i=0; i<population_size; i+=2){
                 std::cout<<"cross_index_smaller: "<<cross_index_smaller<<std::endl;
                 std::cout<<"cross_index_bigger: "<<cross_index_bigger<<std::endl;
-                for(int j=0; j<population_size; j++){
+                for(int j=0; j<arr.size(); j++){
                     first_parent.insert(first_parent.begin()+j, population[i][j]);
                     second_parent.insert(second_parent.begin()+j, population[i+1][j]);
                 }
                 std::cout<<"first_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<second_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -332,17 +331,17 @@ void cross_random(std::vector<std::vector<int> >& population, int population_siz
                     first_child.push_back(second_parent[j]);
                      second_child.push_back(first_parent[j]);
                 }
-                for(int j=cross_index_bigger+1; j<population_size; j++){
+                for(int j=cross_index_bigger+1; j<arr.size(); j++){
                     first_child.push_back(first_parent[j]);
                      second_child.push_back(second_parent[j]);
                 }
                 std::cout<<"first_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<< second_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -363,17 +362,17 @@ void cross_random(std::vector<std::vector<int> >& population, int population_siz
 
                 std::cout<<"cross_index_smaller : "<<cross_index_smaller<<std::endl;
                 std::cout<<"cross_index_bigger: "<<cross_index_bigger<<std::endl;
-                for(int j=0; j<population_size; j++){
+                for(int j=0; j<arr.size(); j++){
                     first_parent.insert(first_parent.begin()+j, population[i][j]);
                     second_parent.insert(second_parent.begin()+j, population[i+1][j]);
                 }
                 std::cout<<"first_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_parent: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<second_parent[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -385,17 +384,17 @@ void cross_random(std::vector<std::vector<int> >& population, int population_siz
                     first_child.push_back(second_parent[j]);
                      second_child.push_back(first_parent[j]);
                 }
-                for(int j=cross_index_bigger+1; j<population_size; j++){
+                for(int j=cross_index_bigger+1; j<arr.size(); j++){
                     first_child.push_back(first_parent[j]);
                      second_child.push_back(second_parent[j]);
                 }
                 std::cout<<"first_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<<first_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
                 std::cout<<"second_child: {";
-                for(int i=0; i<population_size; i++){
+                for(int i=0; i<arr.size(); i++){
                     std::cout<< second_child[i]<<" ,";
                 }
                 std::cout<<"}"<<std::endl;
@@ -407,8 +406,8 @@ void cross_random(std::vector<std::vector<int> >& population, int population_siz
             second_parent.clear();
 
         }
-        for(int j=0; j<population_size; j++){
-            last_in_population.insert(last_in_population.begin()+j, population[population_size-1][j]);
+        for(int j=0; j<arr.size(); j++){
+            last_in_population.insert(last_in_population.begin()+j, population[arr.size()-1][j]);
         }
         new_population.push_back(last_in_population);
         population.clear();

@@ -13,8 +13,8 @@
 
 
 #include "ga.h"
-#include "subset.cpp"
-#include "ga.cpp"
+//#include "subset.cpp"
+//#include "ga.cpp"
 
 
 
@@ -57,7 +57,7 @@ int main(int argc, char* argv[]){
         std::cout << "From file"
              << std::endl;
         iter_create_binary(arr, vect_vect_all_combinations);
-        ga(iterations,1,arr.size(),vect_vect_all_combinations,arr,sum_to_find);
+        ga(iterations,2,8,vect_vect_all_combinations,arr,sum_to_find);
     }
     if (argc > 1) {
         arr.clear();
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
         }
 
         iter_create_binary(arr, vect_vect_all_combinations);
-        ga(iteration_console,1,arr.size(),vect_vect_all_combinations,arr,sum_to_find);
+        ga(iteration_console,1,10,vect_vect_all_combinations,arr,sum_to_find);
     }
 
 
