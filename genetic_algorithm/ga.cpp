@@ -29,7 +29,7 @@ void ga(int iter, int method, int population_size, std::vector<std::vector<int> 
         mutation(population, population_size, arr);
         index++;
     }
-
+    convert_binary_to_decimal(population,arr);
 
 }
 

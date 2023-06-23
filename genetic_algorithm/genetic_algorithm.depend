@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1687265880 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\ga.cpp
+1687267099 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\ga.cpp
 	<iostream>
 	<fstream>
 	<stdio.h>
@@ -35,7 +35,7 @@
 	<functional>
 	"subset.h"
 
-1687247638 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\main.cpp
+1687266610 source:c:\users\pc\desktop\canon_game\metaheurystka\genetic_algorithm\main.cpp
 	<iostream>
 	<fstream>
 	<stdio.h>
