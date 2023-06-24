@@ -1,4 +1,5 @@
-
+#ifndef SUBSET_GA
+#define SUBSET_GA
 void display_subset(std::vector<int>& vect);
 
 void print_vector2d_values(std::vector<std::vector<int> >& vect);
@@ -18,3 +19,7 @@ void vector2d_remove_all(std::vector<std::vector<int> >& vect);
 void create_neighbors_best_subset(std::vector<int>& best_subset, std::vector<int>& arr, std::vector<std::vector<int> >& vect_all_neighbors_of_subsetj);
 
 void random_susbset(int random_number, std::vector<std::vector<int> >& vect, std::vector<int>& random_subset, std::vector<int>& arr);
+
+void create_start_subset(int size,std::vector<int>& start_subset);
+
+#endif

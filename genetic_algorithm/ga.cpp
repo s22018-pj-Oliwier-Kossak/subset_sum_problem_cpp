@@ -13,10 +13,10 @@
 #include "subset.h"
 #include "ga.h"
 
-void ga(int iter, int method, int population_size, std::vector<std::vector<int> >& vect_vect_all_combinations,std::vector<int>& arr, int sum_to_find){
+void ga(int iter, int method, int population_size,std::vector<int>& arr, int sum_to_find){
     std::vector<std::vector<int> > population;
     std::vector<int> points_after_scale;
-    create_population(population_size, vect_vect_all_combinations, population, arr);
+    create_population(population_size, population, arr);
     bool start = true;
     int index = 0;
     while((index<iter)&&(start)){
@@ -33,17 +33,13 @@ void ga(int iter, int method, int population_size, std::vector<std::vector<int> 
 
 }
 
-void create_population(int population_size, std::vector<std::vector<int> >& vect_vect_all_combinations, std::vector<std::vector<int> >& population, std::vector<int>& arr){
-    int number;
-    std::vector<int> vect_to_push;
+void create_population(int population_size, std::vector<std::vector<int> >& population, std::vector<int>& arr){
+
+    std::vector<int> population_individual;
     for(int i=0; i<population_size; i++){
-        number=create_random_number_arr(arr.size());
-        for(int j=0; j<arr.size(); j++){
-            vect_to_push.push_back(vect_vect_all_combinations[number][j]);
-        }
-        std::cout<<number<<std::endl;
-        population.push_back(vect_to_push);
-        vect_to_push.clear();
+        create_start_subset(arr.size(), population_individual);
+        population.push_back(population_individual);
+        population_individual.clear();
     }
 
 }

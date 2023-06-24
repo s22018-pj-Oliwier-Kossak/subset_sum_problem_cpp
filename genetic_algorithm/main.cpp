@@ -21,16 +21,19 @@
 int main(int argc, char* argv[]){
     std::fstream numbers;
     std::fstream iter;
+    std::fstream method;
     std::vector<int> vect;
     std::vector<int> arr;
     std::vector<int> best_subset;
     int iterations = 0;
     int random_number = 0;
     int sum_to_find = 10;
+    int method_cross = 0;
     std::vector<std::vector<int> > vect_vect_all_combinations;
 
     numbers.open("numbers.txt", std::ios::in);
     iter.open("iter.txt", std::ios::in);
+    method.open("method.txt", std::ios::in);
     if(numbers.is_open()){
         arr.clear();
         std::string num;
@@ -48,16 +51,24 @@ int main(int argc, char* argv[]){
         }
 
     }
+     if(method.is_open()){
+        std::string method_index;
+        while(getline(method,method_index)){
+            method_cross = stoi(method_index);
+
+        }
+
+    }
     numbers.close();
     iter.close();
-
+    method.close();
 
    if (argc == 1) {
         std::cout<<std::endl;
         std::cout << "From file"
              << std::endl;
-        iter_create_binary(arr, vect_vect_all_combinations);
-        ga(iterations,2,8,vect_vect_all_combinations,arr,sum_to_find);
+
+        ga(iterations,method_cross,8,arr,sum_to_find);
     }
     if (argc > 1) {
         arr.clear();
@@ -65,13 +76,15 @@ int main(int argc, char* argv[]){
              << std::endl;
 
          int iteration_console = atoi(argv[1]);
+         int method_console = atoi(argv[2]);
          std::cout<<"iteration_console "<<iteration_console<<std::endl;
+         std::cout<<"method_console  "<<method_console <<std::endl;
         for (int i = 2; i < argc; i++) {
            arr.push_back(atoi(argv[i]));
         }
 
-        iter_create_binary(arr, vect_vect_all_combinations);
-        ga(iteration_console,1,10,vect_vect_all_combinations,arr,sum_to_find);
+
+        ga(iteration_console,method_console ,10,arr,sum_to_find);
     }
 
 
