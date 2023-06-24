@@ -1,4 +1,5 @@
-
+#ifndef SUBSET_SIMULATED
+#define SUBSET_SIMULATED
 void display_subset(std::vector<int>& vect);
 
 void print_vector2d_values(std::vector<std::vector<int> >& vect);
@@ -20,3 +21,6 @@ void create_neighbors_best_subset(std::vector<int>& best_subset, std::vector<int
 void random_susbset(int random_number, std::vector<std::vector<int> >& vect, std::vector<int>& random_subset, std::vector<int>& arr);
 
 void goal_function_simulated_annealing(int iter,std::function<double(int)> T, std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset,std::vector<int>& best_subset_global, std::vector<int>& arr, int sum_to_find);
+
+void create_start_subset(int size,std::vector<int>& start_subset);
+#endif

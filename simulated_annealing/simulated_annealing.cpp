@@ -16,10 +16,10 @@
 #include "simulated_annealing.h"
 
 
-void simulated_annealing(int iter, int random_number, std::vector<std::vector<int> >& vect_all_combinations, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find){
+void simulated_annealing(int iter, std::vector<int>& start_subset, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find){
     std::vector<int> best_subset;
     std::vector<int> best_subset_global;
-    random_susbset(random_number,vect_all_combinations,best_subset,arr);
+    best_subset = start_subset;
     best_subset_global=best_subset;
 
     for(int i=0; i<iter; i++){

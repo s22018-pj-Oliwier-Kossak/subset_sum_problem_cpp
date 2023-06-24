@@ -27,7 +27,7 @@ int main(int argc, char* argv[]){
     int iterations = 0;
     int random_number = 0;
     int sum_to_find = 15;
-    std::vector<std::vector<int> > vect_vect_all_combinations;
+    std::vector<int> start_vector;
     std::vector<std::vector<int> > vect_all_neighbors_of_subset;
 
     numbers.open("numbers.txt", std::ios::in);
@@ -57,9 +57,12 @@ int main(int argc, char* argv[]){
         std::cout<<std::endl;
         std::cout << "From file"
              << std::endl;
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        simulated_annealing(iterations,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find);
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+        simulated_annealing(iterations,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find);
     }
     if (argc > 1) {
         arr.clear();
@@ -70,10 +73,13 @@ int main(int argc, char* argv[]){
         for (int i = 2; i < argc; i++) {
            arr.push_back(atoi(argv[i]));
         }
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
 
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        simulated_annealing(iteration_console,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find);
+        simulated_annealing(iteration_console,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find);
 
     }
 
