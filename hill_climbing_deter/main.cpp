@@ -13,8 +13,8 @@
 
 
 #include "hill_climbing_deter.h"
-#include "subset.cpp"
-#include "hill_climbing_deter.cpp"
+//#include "subset.cpp"
+//#include "hill_climbing_deter.cpp"
 
 
 
@@ -27,9 +27,9 @@ int main(int argc, char* argv[]){
     int iterations = 0;
     int random_number = 0;
     int sum_to_find = 10;
-    std::vector<std::vector<int> > vect_vect_all_combinations;
-    std::vector<std::vector<int> > vect_all_neighbors_of_subset;
 
+    std::vector<std::vector<int> > vect_all_neighbors_of_subset;
+    std::vector<int> start_vector;
     numbers.open("numbers.txt", std::ios::in);
     iter.open("iter.txt", std::ios::in);
     if(numbers.is_open()){
@@ -52,14 +52,17 @@ int main(int argc, char* argv[]){
     numbers.close();
     iter.close();
 
-
    if (argc == 1) {
         std::cout<<std::endl;
         std::cout << "From file"
              << std::endl;
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(1);
-        hill_climbing_deter(iterations,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find );
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+
+        hill_climbing_deter(iterations,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find );
     }
     if (argc > 1) {
         arr.clear();
@@ -72,9 +75,13 @@ int main(int argc, char* argv[]){
            arr.push_back(atoi(argv[i]));
         }
 
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        hill_climbing_deter(iteration_console,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find );
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+
+        hill_climbing_deter(iteration_console,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find );
 
     }
 
