@@ -10,11 +10,8 @@
 #include <numeric>
 #include <functional>
 #include "subset.h"
-
-
 #include "hill_climbing_random.h"
-//#include "subset.cpp"
-//#include "hill_climbing_random.cpp"
+
 
 
 
@@ -29,6 +26,7 @@ int main(int argc, char* argv[]){
     int sum_to_find = 15;
     std::vector<std::vector<int> > vect_vect_all_combinations;
     std::vector<std::vector<int> > vect_all_neighbors_of_subset;
+    std::vector<int> start_vector;
 
     numbers.open("numbers.txt", std::ios::in);
     iter.open("iter.txt", std::ios::in);
@@ -52,14 +50,18 @@ int main(int argc, char* argv[]){
     numbers.close();
     iter.close();
 
-
    if (argc == 1) {
         std::cout<<std::endl;
         std::cout << "From file"
              << std::endl;
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        hill_climbing_random(iterations,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find);
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+
+        hill_climbing_random(iterations,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find);
+
     }
     if (argc > 1) {
         arr.clear();
@@ -70,16 +72,16 @@ int main(int argc, char* argv[]){
         for (int i = 2; i < argc; i++) {
            arr.push_back(atoi(argv[i]));
         }
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
 
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        hill_climbing_random(iteration_console,random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find);
+        hill_climbing_random(iteration_console,start_vector,vect_all_neighbors_of_subset,arr,sum_to_find);
+
 
     }
-
-
-
-
 
 }
 
