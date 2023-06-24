@@ -1,3 +1,5 @@
+#ifndef SUBSET_TABU
+#define SUBSET_TABU
 void display_subset(std::vector<int>& vect);
 
 void print_vector2d_values(std::vector<std::vector<int> >& vect);
@@ -20,3 +22,6 @@ void random_susbset(int random_number, std::vector<std::vector<int> >& vect, std
 
 void goal_function_tabu( std::vector<std::vector<int> >& vect_all_neighbors_of_subset, std::vector<int>& best_subset, std::vector<int>& arr, int sum_to_find, std::vector<std::vector<int> >& tabu_list, bool& tabu_start,int tabu_size);
 
+void create_start_subset(int size,std::vector<int>& start_subset);
+
+#endif

@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     int sum_to_find = 10;
     std::vector<std::vector<int> > vect_vect_all_combinations;
     std::vector<std::vector<int> > vect_all_neighbors_of_subset;
-
+    std::vector<int> start_vector;
     numbers.open("numbers.txt", std::ios::in);
     iter.open("iter.txt", std::ios::in);
     if(numbers.is_open()){
@@ -57,9 +57,12 @@ int main(int argc, char* argv[]){
         std::cout<<std::endl;
         std::cout << "From file"
              << std::endl;
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(1);
-        tabu(random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find,iterations);
+        create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+        tabu(start_vector,vect_all_neighbors_of_subset,arr,sum_to_find,iterations);
     }
     if (argc > 1) {
         arr.clear();
@@ -72,9 +75,12 @@ int main(int argc, char* argv[]){
            arr.push_back(atoi(argv[i]));
         }
 
-        iter_create_binary(arr, vect_vect_all_combinations);
-        random_number = create_random_number_arr(arr.size());
-        tabu(random_number,vect_vect_all_combinations,vect_all_neighbors_of_subset,arr,sum_to_find,iteration_console);
+         create_start_subset(arr.size(),start_vector);
+        std::cout<<"start vetor: "<<std::endl;
+        for (int i = 0; i < arr.size(); i++) {
+               std::cout<<start_vector[i];
+            }
+        tabu(start_vector,vect_all_neighbors_of_subset,arr,sum_to_find,iteration_console);
 
     }
 

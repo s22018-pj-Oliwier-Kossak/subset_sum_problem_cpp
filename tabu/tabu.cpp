@@ -16,11 +16,11 @@
 
 
 void check_best_global(std::vector<int>& best_subset, std::vector<int>& best_subset_global, std::vector<int>& arr,int sum_to_find);
-void tabu( int random_number, std::vector<std::vector<int> >& vect_all_combinations, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find, int tabu_size){
+void tabu(std::vector<int>& start_subset, std::vector<std::vector<int> >& vect_all_neighbors_of_subset,  std::vector<int>& arr, int sum_to_find, int tabu_size){
     std::vector<int> best_subset;
     std::vector<int> best_subset_global;
     std::vector<std::vector<int> > tabu_list;
-    random_susbset(random_number,vect_all_combinations,best_subset,arr);
+    best_subset = start_subset;
     best_subset_global=best_subset;
     tabu_list.push_back(best_subset);
     int iteration=0;

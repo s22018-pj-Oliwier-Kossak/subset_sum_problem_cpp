@@ -13,6 +13,9 @@
 #include <functional>
 #include "subset.h"
 
+static std::random_device rd;
+static std::mt19937 gen(rd());
+
 void create_binary(int byte,std::vector<int>& arr, std::vector<std::vector<int> >& vect_vect)
 {
      std::vector<int> vect;
@@ -114,7 +117,17 @@ void create_neighbors_best_subset(std::vector<int>& best_subset, std::vector<int
 
 }
 
+void create_start_subset(int size,std::vector<int>& start_subset)
+{
 
+    std::uniform_int_distribution<> dis(0, 1);
+    int numb;
+    for(int i=0; i<size; i++){
+        numb = dis(gen);
+        std::cout<<"numb: "<<numb<<std::endl;
+        start_subset.push_back(numb);
+    }
+}
 
 void convert_binary_to_decimal(std::vector<std::vector<int> >& vect, std::vector<int>& arr){
     std::cout<<std::endl;
@@ -143,8 +156,7 @@ void display_subset(std::vector<int>& vect){
 
 int create_random_number_arr(int size)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+
     std::uniform_int_distribution<> dis(0, pow(2, size)-1);
     int numb = dis(gen);
     return numb;
@@ -152,8 +164,7 @@ int create_random_number_arr(int size)
 
 int create_random_number(int start_index,int end_index)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+
     std::uniform_int_distribution<> dis(start_index, end_index);
     int numb = dis(gen);
     return numb;
